@@ -10,7 +10,12 @@ function toApp() {
     logOutBtn.id = "logOut";
 
     //add event listener
-    logOutBtn.addEventListener("click", showLogin);
+    logOutBtn.addEventListener("click", logOut);
+}
+
+function logOut() {
+    //epty logged user
+    showLogin();
 }
 
 function checkLogIn() {
