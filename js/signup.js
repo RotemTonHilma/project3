@@ -34,6 +34,7 @@ function onSignSubmit() {
     let userWithInputName = users.find(user => hasName(user, inputInfo.username));
     if (userWithInputName === undefined) {//if the name isn't taken
         users.push({ username: inputInfo.username, password: inputInfo.password });
+        localStorage.setItem("users", JSON.stringify(users));
     }
     else alert("username taken");
 }
