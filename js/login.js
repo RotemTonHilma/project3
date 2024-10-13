@@ -52,6 +52,7 @@ function onLogSubmit() {
     else {
 
         localStorage.setItem("loggedUsers", JSON.stringify(loggeduser));
+        toApp();
     }
 
 }

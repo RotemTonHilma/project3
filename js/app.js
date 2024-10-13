@@ -14,14 +14,6 @@ function toApp() {
 }
 
 function logOut() {
-    //epty logged user
+    localStorage.setItem("loggedUsers", JSON.stringify({}));
     showLogin();
-}
-
-function checkLogIn() {
-
-}
-
-function checkSignUp() {
-
 }
