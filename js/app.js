@@ -15,5 +15,7 @@ function toApp() {
 
 function logOut() {
     localStorage.setItem("loggedUsers", JSON.stringify({}));
+
     showLogin();
 }
+
