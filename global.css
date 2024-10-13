@@ -1,0 +1,29 @@
+body {
+    background-color: #8b97a6;
+}
+input {
+    background-color: #dad8d5;
+    border-radius: 5px;
+    display:block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+button {
+    background-color: #bf8b56;
+    border-radius: 15px;
+    padding-inline: 10px;
+    box-shadow: 0 7px #205b75;
+}
+
+button:hover {background-color: #a4bce4}
+
+button:active {
+  background-color: #bf966d;
+  box-shadow: 0 3px #205b75;
+  transform: translateY(4px);
+}
+form {
+    background-color: #205b75;
+    width:min-content;
+
+}
