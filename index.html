@@ -15,6 +15,7 @@
         <p>login</p>
         <form>
             <input type="text" name="username" id="username" maxlength="20" minlength="2" placeholder="Your username.." required onchange="handleLogChange()">
+            <br>
             <input type="text" name="passward" id="password" maxlength="20" minlength="2" placeholder="Your passward.." required onchange="handleLogChange()">
         </form>
         <button id="inactiveSubmitLogIn">submit</button>
@@ -26,6 +27,7 @@
         <form>
             <input type="text" name="username" id="usernameSU" maxlength="20" minlength="2" placeholder="Your username.." required
                 onchange="handleSUChange()">
+                <br>
             <input type="text" name="passward" id="passwordSU" maxlength="20" minlength="2" placeholder="Your passward.." required
                 onchange="handleSUChange()">
         </form>
@@ -34,9 +36,10 @@
     </template>
 
     <template id="app">
-        <p>app</p>
-
+        <p>Your To Do List</p>
         <button id="inactiveLogOut">log out</button>
+
+
     </template>
 
     <!-- container div -->
@@ -47,6 +50,7 @@
 
     <script src="./js/login.js"></script>
     <script src="./js/signup.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 
 </html>
