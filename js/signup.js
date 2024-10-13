@@ -16,3 +16,26 @@ function toSignUp() {
     submitSignUpBtn.addEventListener("click", onSignSubmit);
     toLogInBtn.addEventListener("click", showLogin);
 }
+
+//collect sign up info
+function handleSUChange() {
+    let suFormInput = {
+        username: document.getElementById("usernameSU").value,
+        password: document.getElementById("passwordSU").value,
+    }
+    return suFormInput;
+}
+
+//add to users array
+function onSignSubmit() {
+    //search if there is a user with this username
+    let inputInfo = handleSUChange();
+    let users = JSON.parse(localStorage.getItem("users"))
+    let userWithInputName = users.find(user => hasName(user, inputInfo.username));
+    if (userWithInputName === undefined) {//if the name isn't taken
+        users.push({ username: inputInfo.username, password: inputInfo.password });
+    }
+    else alert("username taken");
+}
+
+const hasName = (user, name) => user.username === name;

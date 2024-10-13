@@ -9,8 +9,8 @@ function showLogin() {
     container.appendChild(LogInClone);
 
     //change ids
-    let submitLogInBtn = container.querySelector("#inactiveSubmitLogIn");
-    submitLogInBtn.id = "submitLogIn";
+    let submitLogIn = container.querySelector("#inactiveSubmitLogIn");
+    submitLogIn.id = "submitLogIn";
 
     let toSignUpBtn = container.querySelector("#inactiveToSignUp");
     toSignUpBtn.id = "toSignUp";
@@ -18,12 +18,12 @@ function showLogin() {
     //add event listeners
     submitLogIn.addEventListener("click", onLogSubmit);
     toSignUpBtn.addEventListener("click", toSignUp);
-    
+
 }
 
 //set up users
 if (!localStorage.getItem("users"))
-    localStorage.setItem("users", JSON.stringify([{username: "adi", password: "123"}]))
+    localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123" }]))
 
 
 //set up looged users
@@ -41,14 +41,11 @@ function handleLogChange() {
 
 //add current user info to local storage
 function onLogSubmit() {
-    let inputInfo= handleLogChange();
+    let inputInfo = handleLogChange();
     let users = JSON.parse(localStorage.getItem("users"))
-    console.log(users);
-    let loggeduser = users.find(user => checkLogIn(user,inputInfo));
+    let loggeduser = users.find(user => checkLogIn(user, inputInfo));
 
-    //let loggedUsers = JSON.parse(localStorage.getItem("loggedUsers"));
-    console.log(loggeduser);
-    if(loggeduser === undefined) {
+    if (loggeduser === undefined) {
         alert("wrong information");
     }
 
