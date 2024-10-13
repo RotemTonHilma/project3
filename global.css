@@ -7,6 +7,11 @@ input {
     display:block;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 220px;
+    height: 35px;
+}
+input:hover {
+    background-color: #f9f8f5;
 }
 button {
     background-color: #bf8b56;
