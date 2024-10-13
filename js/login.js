@@ -16,13 +16,15 @@ function showLogin() {
     toSignUpBtn.id = "toSignUp";
 
     //add event listeners
-    submitLogInBtn.addEventListener("click", onLogSubmit);
+    submitLogIn.addEventListener("click", onLogSubmit);
     toSignUpBtn.addEventListener("click", toSignUp);
+    
 }
 
 //set up users
 if (!localStorage.getItem("users"))
-    localStorage.setItem("users", JSON.stringify([]))
+    localStorage.setItem("users", JSON.stringify([{username: "adi", password: "123"}]))
+
 
 //set up looged users
 if (!localStorage.getItem("loggedUsers"))
@@ -37,27 +39,34 @@ function handleLogChange() {
     return logFormInput;
 }
 
- //add current user info to local storage
+//add current user info to local storage
 function onLogSubmit() {
+    let inputInfo= handleLogChange();
     let users = JSON.parse(localStorage.getItem("users"))
     console.log(users);
-    let loggeduser = users.find(user=>checkLogIn(user));
+    let loggeduser = users.find(user => checkLogIn(user,inputInfo));
 
-    let loggedUsers = JSON.parse(localStorage.getItem("loggedUsers"));
-    //loggeduser = logFormInput;
-        console.log(loggedUsers);
-        localStorage.setItem("loggedUsers", loggedUsers);
-    
+    //let loggedUsers = JSON.parse(localStorage.getItem("loggedUsers"));
+    console.log(loggeduser);
+    if(loggeduser === undefined) {
+        alert("wrong information");
+    }
+
+    else {
+
+        localStorage.setItem("loggedUsers", JSON.stringify(loggeduser));
+    }
+
 }
 
 //validate user log in
-function checkLogIn(user) {
-    return user.username === logForm.username && logForm.password === user.password;
-  }
+function checkLogIn(user, input) {
+    return user.username === input.username && input.password === user.password;
+}
 
 
-  
 
- 
-    
+
+
+
 
