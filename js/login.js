@@ -16,6 +16,6 @@ function showLogin() {
     toSignUpBtn.id = "toSignUp";
 
     //add event listeners
-    // submitLogInBtn.addEventListener("click", checkLogIn);
-    // toSignUpBtn.addEventListener("click", toSignUp);
+    submitLogInBtn.addEventListener("click", onLogSubmit);
+    toSignUpBtn.addEventListener("click", toSignUp);
 }
