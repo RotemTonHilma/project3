@@ -35,7 +35,8 @@ function onSignSubmit() {
     if (userWithInputName === undefined) {//if the name isn't taken
         let newUser = {
             username: inputInfo.username,
-            password: inputInfo.password
+            password: inputInfo.password,
+            todolist: []
         }
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
