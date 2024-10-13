@@ -15,8 +15,10 @@
         <form>
 
         </form>
-        <input type="text" name="username" id="username" maxlength="20" minlength="2" required onchange="handleLogChange()">
-        <input type="text" name="passward" id="password" maxlength="20" minlength="2" required onchange="handleLogChange()">
+        <input type="text" name="username" id="username" maxlength="20" minlength="2" required
+            onchange="handleLogChange()">
+        <input type="text" name="passward" id="password" maxlength="20" minlength="2" required
+            onchange="handleLogChange()">
         <button id="inactiveSubmitLogIn">submit</button>
         <button id="inactiveToSignUp">sign up</button>
     </template>
@@ -24,7 +26,10 @@
     <template id="sign-up">
         <p>signup</p>
         <form>
-
+            <input type="text" name="username" id="usernameSU" maxlength="20" minlength="2" required
+                onchange="handleSUChange()">
+            <input type="text" name="passward" id="passwordSU" maxlength="20" minlength="2" required
+                onchange="handleSUChange()">
         </form>
         <button id="inactiveSubmitSignUp">submit</button>
         <button id="inactiveToLogIn">log in</button>
