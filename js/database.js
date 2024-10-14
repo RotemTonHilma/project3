@@ -36,6 +36,10 @@ function returnloggedUser() {
     return JSON.parse(localStorage.getItem("loggedUsers"));
 }
 
+function unparsedLoggedUser() {
+    return localStorage.getItem("loggedUsers");
+}
+
 function setNewTaskArr(userArr, username, newToDoList) {
 
     for (let user of userArr) {
