@@ -24,16 +24,59 @@ function server(message) {
             }
         }
 
-        //
+        //get loggedUsers request
         if (message.url === "ourserver/api/loggedUsers") {
             //check if exists
-            if (!returnloggedUser()) message.status = 400;
+            if (!returnloggedUser() || unparsedLoggedUser() === '') message.status = 400;
+            else {
+                message.status = 200;
+                message.responseText = JSON.stringify(returnloggedUser());
+            }
 
         }
+    }
 
+    if (message.method === "POST") {
+        //create users array
+        if (message.url === "ourserver/api/users") {
+            //check if exists
+            if (returnUsers()) message.status = 400;
+            else {
+                message.status = 200;
+                createUsers();
+            }
+        }
 
+        // add user request
+        const addUserRegex = /^ourserver\/api\/users\/[^\/]+$/;
+        if (addUserRegex.test(message.url)) {
+            //check if user array exists
+            if (!returnUsers()) message.status = 400;
+            else {
+                message.status = 200;
+                addUsers();
+            }
+        }
 
+        //create logged user key
+        if (message.url === "ourserver/api/loggedUsers") {
+            //check if exists
+            if (returnloggedUser()) message.status = 400;
+            else {
+                message.status = 200;
+                createLoggedUsers();
+            }
+        }
 
-
+        //add new task request
+        if (message.url === "ourserver/api/loggedUsers/todolist") {
+            //check if logged user exists, isn't empty
+            if (!returnloggedUser() || unparsedLoggedUser() === '') message.status = 400;
+            else {
+                let newTaskContent = message.data;
+                message.status = 200;
+                addNewTask(newTaskContent);
+            }
+        }
     }
 }

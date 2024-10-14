@@ -1,9 +1,9 @@
 //post
-function createUsers () {
+function createUsers() {
     localStorage.setItem("users", JSON.stringify([]));
 }
 //post
-function createLoggedUsers () {
+function createLoggedUsers() {
     localStorage.setItem("loggedUsers", JSON.stringify({}));
 }
 //get
@@ -24,9 +24,7 @@ function checkIfUsername(user, input) {
 //post
 function addUsers(user) {
     let users = returnUsers();
-    //users.push(user)
     localStorage.setItem("users", JSON.stringify([...users, user]));
-
 }
 //put
 function addLoggeduser(user) {
@@ -34,7 +32,6 @@ function addLoggeduser(user) {
 }
 
 
-//put
 function setUserArray(arr) {
     localStorage.setItem("users", JSON.stringify(arr));
 }
