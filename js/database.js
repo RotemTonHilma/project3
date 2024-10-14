@@ -103,12 +103,14 @@ function removeTask(taskID) {
 
 //get
 function returnLoggedUserTodolist() {
-     let currrentUser = returnloggedUser();
-     let userTDList = currrentUser.todolist;
-     return userTDList;
+    let currrentUser = returnloggedUser();
+    let userTDList = currrentUser.todolist;
+    return userTDList;
 
 }
 
 function unparsedLoggedUserTodolist() {
+    let currrentUser = returnloggedUser();
+    let userTDList = currrentUser.todolist;
     return JSON.stringify(userTDList);
 }

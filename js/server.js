@@ -103,7 +103,8 @@ function server(message) {
             if (!returnLoggedUserTodolist() || unparsedLoggedUserTodolist() === "") message.status = 400;
             else {
                 let currrentUser = returnloggedUser();
-                let idOfDeletedTask = currrentUser.todolist.id;
+
+                let idOfDeletedTask = message.data;
                 message.status = 200;
                 removeTask(idOfDeletedTask);
             }
