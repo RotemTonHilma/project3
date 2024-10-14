@@ -1,8 +1,17 @@
+//post
+function createUsers () {
+    localStorage.setItem("users", JSON.stringify([]));
+}
+//post
+function createLoggedUsers () {
+    localStorage.setItem("loggedUsers", JSON.stringify({}));
+}
+//get
 function returnUsers() {
     return JSON.parse(localStorage.getItem("users"));
 }
 
-
+//get
 function returnIfUsername(usermane) {
     let users = returnUsers();
     let loggeduser = users.find(user => checkIfUsername(user, usermane));
@@ -12,26 +21,28 @@ function returnIfUsername(usermane) {
 function checkIfUsername(user, input) {
     return user.username === input;
 }
-
+//post
 function addUsers(user) {
     let users = returnUsers();
     //users.push(user)
     localStorage.setItem("users", JSON.stringify([...users, user]));
 
 }
+//put
 function addLoggeduser(user) {
     localStorage.setItem("loggedUsers", JSON.stringify(user));
 }
 
 
-
+//put
 function setUserArray(arr) {
     localStorage.setItem("users", JSON.stringify(arr));
 }
-
+//delete
 function emptyLoggedUser() {
     localStorage.setItem("loggedUsers", JSON.stringify({}));
 }
+//get
 function returnloggedUser() {
     return JSON.parse(localStorage.getItem("loggedUsers"));
 }
@@ -49,7 +60,7 @@ function setNewTaskArr(userArr, username, newToDoList) {
         }
     }
 }
-
+//post
 function addNewTask(taskText) {
     let currrentUser = returnloggedUser();
     let userTDList = currrentUser.todolist;
@@ -77,7 +88,7 @@ function addNewTask(taskText) {
     setNewTaskArr(users, currrentUser.username, userTDList);
     setUserArray(users);
 }
-
+//delete
 function removeTask(taskID) {
     let currrentUser = returnloggedUser();
     let userTDList = currrentUser.todolist;
