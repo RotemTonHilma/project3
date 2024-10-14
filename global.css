@@ -27,6 +27,8 @@ button {
     border-radius: 15px;
     padding-inline: 10px;
     box-shadow: 0 7px #205b75;
+    margin-right: 10px;
+    margin-top: 10px;
     
 }
 
@@ -37,8 +39,11 @@ button:active {
   box-shadow: 0 3px #205b75;
   transform: translateY(4px);
 }
-.buttonContainer {
+li {
     display: flex;
-    align-items:center;
-
+    align-content: flex-start;
+    justify-content: space-between;
+    background-color: #dad8d5
 }
+
+ 
