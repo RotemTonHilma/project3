@@ -23,7 +23,7 @@ function showLogin() {
 
 //set up users
 if (!localStorage.getItem("users"))
-    localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123" , todolist: []}]))
+    localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123", todolist: [] }]))
 
 
 //set up looged users
