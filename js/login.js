@@ -91,8 +91,8 @@ function onLogSubmit() {
                         toApp();
                     }
                 }
+                addCurrentUserInfoReq.send();
             }
-            addCurrentUserInfoReq.send();
         }
     }
     getUsersArrReq.send();
