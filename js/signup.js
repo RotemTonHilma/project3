@@ -45,5 +45,3 @@ function onSignSubmit() {
     }
     else alert("username taken");
 }
-
-const hasName = (user, name) => user.username === name;
