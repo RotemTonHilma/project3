@@ -31,14 +31,25 @@ setUsersArrReq.onload = function () {
 }
 setUsersArrReq.send();
 
-
-if (!localStorage.getItem("users"))
-    localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123", todolist: [] }]))
-
+/*set up users
+//if (!localStorage.getItem("users"))
+    //localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123", todolist: [] }]))
+*/
 
 //set up looged users
+const setLoggedUsersArrReq = new Fajax();
+setLoggedUsersArrReq.open("POST", "ourserver/api/loggedUsers");
+setLoggedUsersArrReq.onload = function () {
+    if (setLoggedUsersArrReq.status !== 200) {
+        alert("loggedUser obj already exists");
+    }
+}
+setLoggedUsersArrReq.send();
+
+/*set up looged users
 if (!localStorage.getItem("loggedUsers"))
     localStorage.setItem("loggedUsers", JSON.stringify({}))
+*/
 
 //collect login info
 function handleLogChange() {
@@ -62,18 +73,40 @@ adduserreq.onload = function () {
 //add current user info to local storage
 function onLogSubmit() {
     let inputInfo = handleLogChange();
-    let users = JSON.parse(localStorage.getItem("users"))
-    let loggeduser = users.find(user => checkLogIn(user, inputInfo));
+    /*let users = JSON.parse(localStorage.getItem("users"))*/
+    const getUsersArrReq = new Fajax();
+    getUsersArrReq.open("GET", "ourserver/api/users");
+    getUsersArrReq.onload = function () {
+        if (getUsersArrReq.status !== 200) {
+            alert("user array doesn't exist");
+        }
+        if (getUsersArrReq.status == 200) {
+            let users = JSON.parse(this.responseText);
+            let loggeduser = users.find(user => checkLogIn(user, inputInfo));
 
-    if (loggeduser === undefined) {
-        alert("wrong information");
+            if (loggeduser === undefined) {
+                alert("wrong information");
+            }
+
+            else {
+                const addCurrentUserInfoReq = new Fajax();
+                addCurrentUserInfoReq.open("PUT", "ourserver/api/loggedUsers", JSON.stringify(inputInfo));
+                addCurrentUserInfoReq.onload = function () {
+                    if (addCurrentUserInfoReq.status !== 200) {
+                        alert("try to log out");
+                    }
+                    if (addCurrentUserInfoReq.status == 200) {
+
+                        // localStorage.setItem("loggedUsers", JSON.stringify(loggeduser));
+                        toApp();
+                    }
+                }
+            }
+            addCurrentUserInfoReq.send();
+        }
     }
+    getUsersArrReq.send();
 
-    else {
-
-        localStorage.setItem("loggedUsers", JSON.stringify(loggeduser));
-        toApp();
-    }
 
 }
 
