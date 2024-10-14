@@ -62,10 +62,6 @@ function server(message) {
             }
         }
 
-        let userWithInputName = returnUsers().find(user => hasName(user, inputInfo.username));
-
-
-
         //create logged user key
         if (message.url === "ourserver/api/loggedUsers") {
             //check if exists
