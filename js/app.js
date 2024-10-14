@@ -36,39 +36,18 @@ function logOut() {
 }
 
 function addTask() {
-    //let currrentUser = JSON.parse(localStorage.getItem("loggedUsers"));
-    const getLoggedUsersReq = new Fajax();
-    getLoggedUsersReq.open("GET", "ourserver/api/loggedUsers");
-    getLoggedUsersReq.onload = function () {
-        if (getLoggedUsersReq.status !== 200) {
-            alert("loggedUser doesnt exists or empty");
+    const newTaskReq = new Fajax();
+    newTaskReq.open("POST", "ourserver/api/loggedUsers/todolist", document.querySelector("#todoInput").value);
+    newTaskReq.onload = function () {
+        if (this.status !== 200) {
+            alert("user either doesn't exist or is empty");
         }
-        else{
-            let currrentUser = JSON.parse(this.responseText);
-            let userTDList = currrentUser.todolist;
-        
-            let task = {
-                "content": document.querySelector("#todoInput").value,
-                "done": false
-            }
-            //update in loggedUsers
-            userTDList.push(task);
-            currrentUser.todolist = userTDList;
-            localStorage.setItem("loggedUsers", JSON.stringify(currrentUser));
-        
-            //update in users array
-            let users = JSON.parse(localStorage.getItem("users"));
-            let userFromArr = users.find(user => hasName(user, currrentUser.username));
-            userFromArr.todolist = userTDList;
-            localStorage.setItem("users", JSON.stringify(users));
-        
-            //update showing tasks
+        else {
             showTasks();
         }
     }
-    getLoggedUsersReq.send();
-
-
+    newTaskReq.send();
+    document.querySelector("#todoInput").value = "";
 }
 
 function showTasks() {
@@ -86,22 +65,22 @@ function showTasks() {
         else {
             let currrentUser = JSON.parse(this.responseText);
             let userList = currrentUser.todolist;
-        
+
             for (let idx in userList) {
                 let newLi = document.createElement("li");
                 let newP = document.createElement("p");
                 newP.textContent = userList[idx].content;
                 newP.style.display = "inline";
-        
+
                 let newBtn = document.createElement("button");
                 newBtn.textContent = "X";
                 newBtn.addEventListener("click", () => { deleteTask(userList[idx]) });
                 newBtn.style.display = "inline-block";
-        
-        
+
+
                 newLi.appendChild(newP);
                 newLi.appendChild(newBtn);
-        
+
                 ul.appendChild(newLi);
             }
         }
@@ -113,10 +92,13 @@ function showTasks() {
 
 function deleteTask(taskObj) {
     const deleteTaskReq = new Fajax();
-    deleteTaskReq.open("DELETE", "ourserver/api/loggedUsers/todolist");
+    deleteTaskReq.open("DELETE", "ourserver/api/loggedUsers/todolist", `${taskObj.id}`);
     deleteTaskReq.onload = function () {
         if (deleteTaskReq.status !== 200) {
             alert("todo list is empty");
+        }
+        else {
+            showTasks();
         }
     }
     deleteTaskReq.send();

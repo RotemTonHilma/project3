@@ -70,7 +70,7 @@ function onLogSubmit() {
 
             else {
                 const addCurrentUserInfoReq = new Fajax();
-                addCurrentUserInfoReq.open("PUT", "ourserver/api/loggedUsers", JSON.stringify(inputInfo));
+                addCurrentUserInfoReq.open("PUT", "ourserver/api/loggedUsers", JSON.stringify(loggeduser));
                 addCurrentUserInfoReq.onload = function () {
                     if (addCurrentUserInfoReq.status !== 200) {
                         alert("try to log out");

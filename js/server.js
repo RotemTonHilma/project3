@@ -57,7 +57,7 @@ function server(message) {
                 if (userWithInputName !== undefined) message.status = 400;
                 else {
                     message.status = 200;
-                    addUsers();
+                    addUsers(JSON.parse(message.data));
                 }
             }
         }
@@ -103,7 +103,8 @@ function server(message) {
             if (!returnLoggedUserTodolist() || unparsedLoggedUserTodolist() === "") message.status = 400;
             else {
                 let currrentUser = returnloggedUser();
-                let idOfDeletedTask = currrentUser.todolist.id;
+
+                let idOfDeletedTask = message.data;
                 message.status = 200;
                 removeTask(idOfDeletedTask);
             }
