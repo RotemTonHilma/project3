@@ -31,11 +31,6 @@ setUsersArrReq.onload = function () {
 }
 setUsersArrReq.send();
 
-/*set up users
-//if (!localStorage.getItem("users"))
-    //localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123", todolist: [] }]))
-*/
-
 //set up looged users
 const setLoggedUsersArrReq = new Fajax();
 setLoggedUsersArrReq.open("POST", "ourserver/api/loggedUsers");
@@ -46,11 +41,6 @@ setLoggedUsersArrReq.onload = function () {
 }
 setLoggedUsersArrReq.send();
 
-/*set up looged users
-if (!localStorage.getItem("loggedUsers"))
-    localStorage.setItem("loggedUsers", JSON.stringify({}))
-*/
-
 //collect login info
 function handleLogChange() {
     let logFormInput = {
@@ -60,20 +50,10 @@ function handleLogChange() {
     return logFormInput;
 }
 
-// //checks: add user
-// const adduserreq = new Fajax();
-// adduserreq.open("POST", "ourserver/api/users/newUser", JSON.stringify({ "username": "newuesr", "password": "1234" }));
-// adduserreq.onload = function () {
-//     if (this.status !== 200) {
-//         alert()
-//     }
 
-// }
-
-//add current user info to local storage
+//add current user info
 function onLogSubmit() {
     let inputInfo = handleLogChange();
-    /*let users = JSON.parse(localStorage.getItem("users"))*/
     const getUsersArrReq = new Fajax();
     getUsersArrReq.open("GET", "ourserver/api/users");
     getUsersArrReq.onload = function () {
@@ -99,8 +79,9 @@ function onLogSubmit() {
                         toApp();
                     }
                 }
+                addCurrentUserInfoReq.send();
             }
-            addCurrentUserInfoReq.send();
+
         }
     }
     getUsersArrReq.send();
