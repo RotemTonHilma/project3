@@ -57,7 +57,7 @@ function server(message) {
                 if (userWithInputName !== undefined) message.status = 400;
                 else {
                     message.status = 200;
-                    addUsers();
+                    addUsers(JSON.parse(message.data));
                 }
             }
         }

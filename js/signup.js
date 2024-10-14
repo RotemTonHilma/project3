@@ -39,7 +39,7 @@ function onSignSubmit() {
         }
         if (getUsersArrReq.status == 200) {
             let users = JSON.parse(this.responseText);
-            //what??? newUser?? xoxo adi
+            //xoxo adi
             let newUser = {
                 username: inputInfo.username,
                 password: inputInfo.password,
@@ -47,31 +47,29 @@ function onSignSubmit() {
             }
             //add newUser request
             const addCurrentUserToUsersReq = new Fajax();
-            addCurrentUserToUsersReq.open("POST", "ourserver/api/users", JSON.stringify(inputInfo));
+            addCurrentUserToUsersReq.open("POST", "ourserver/api/users/new", JSON.stringify(newUser));
             addCurrentUserToUsersReq.onload = function () {
                 if (addCurrentUserToUsersReq.status !== 200) {
-                    alert("user array doesn't exist");
+                    alert("username taken");
+                }
+                else {
+                    const addCurrentUserInfoReq = new Fajax();
+                    addCurrentUserInfoReq.open("PUT", "ourserver/api/loggedUsers", JSON.stringify(newUser));
+                    addCurrentUserInfoReq.onload = function () {
+                        if (addCurrentUserInfoReq.status !== 200) {
+                            alert("try to log out");
+                        }
+                        if (addCurrentUserInfoReq.status == 200) {
+                        }
+                    }
+                    addCurrentUserInfoReq.send();
+                    toApp();
                 }
             }
             addCurrentUserToUsersReq.send();
-
-            // users.push(newUser);
-            //POST localStorage.setItem("users", JSON.stringify(users));
-            //POST  localStorage.setItem("loggedUsers", JSON.stringify(newUser));
-            const addCurrentUserInfoReq = new Fajax();
-            addCurrentUserInfoReq.open("PUT", "ourserver/api/loggedUsers", JSON.stringify(inputInfo));
-            addCurrentUserInfoReq.onload = function () {
-                if (addCurrentUserInfoReq.status !== 200) {
-                    alert("try to log out");
-                }
-                if (addCurrentUserInfoReq.status == 200) {
-                }
-            }
-            addCurrentUserInfoReq.send();
         }
-        else alert("username taken");
-        toApp();
+
     }
-getUsersArrReq.send();
+    getUsersArrReq.send();
 
 }
