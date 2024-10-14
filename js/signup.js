@@ -75,5 +75,3 @@ function onSignSubmit() {
 getUsersArrReq.send();
 
 }
-
-const hasName = (user, name) => user.username === name;
