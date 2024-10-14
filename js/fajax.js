@@ -40,7 +40,7 @@ class Fajax {
     }
 
     get responseText() {
-        return this._response;
+        return this._responseText;
     }
 
     //other methods
