@@ -8,7 +8,7 @@ class Fajax {
     //getters and setters
 
     set status(s) {
-        (s === 200 || s === 400) ? this._status = s : alert("invalid status number");
+        this._status = s;
     }
 
     set responseText(r) {
@@ -52,6 +52,13 @@ class Fajax {
 
     send() {
         let message = new Message(this.method, this.url, this.data);
-        server(message);
+        let returnedMessage = server(message);
+
+        //put response and status in fajax object
+        this.responseText = returnedMessage.responseText;
+        this.status = returnedMessage.status;
+
+        //call onload function 
+        this.onload();
     }
 }

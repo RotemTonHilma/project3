@@ -22,6 +22,16 @@ function showLogin() {
 }
 
 //set up users
+const setUsersArrReq = new Fajax();
+setUsersArrReq.open("POST", "ourserver/api/users");
+setUsersArrReq.onload = function () {
+    if (setUsersArrReq.status !== 200) {
+        alert("user array already exists");
+    }
+}
+setUsersArrReq.send();
+
+
 if (!localStorage.getItem("users"))
     localStorage.setItem("users", JSON.stringify([{ username: "adi", password: "123", todolist: [] }]))
 
