@@ -30,20 +30,50 @@ function handleSUChange() {
 function onSignSubmit() {
     //search if there is a user with this username
     let inputInfo = handleSUChange();
-    let users = JSON.parse(localStorage.getItem("users"))
-    let userWithInputName = users.find(user => hasName(user, inputInfo.username));
-    if (userWithInputName === undefined) {//if the name isn't taken
-        let newUser = {
-            username: inputInfo.username,
-            password: inputInfo.password,
-            todolist: []
+    // let users = JSON.parse(localStorage.getItem("users"))
+    const getUsersArrReq = new Fajax();
+    getUsersArrReq.open("GET", "ourserver/api/users");
+    getUsersArrReq.onload = function () {
+        if (getUsersArrReq.status !== 200) {
+            alert("user array doesn't exist");
         }
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-        localStorage.setItem("loggedUsers", JSON.stringify(newUser));
+        if (getUsersArrReq.status == 200) {
+            let users = JSON.parse(this.responseText);
+            //what??? newUser?? xoxo adi
+            let newUser = {
+                username: inputInfo.username,
+                password: inputInfo.password,
+                todolist: []
+            }
+            //add newUser request
+            const addCurrentUserToUsersReq = new Fajax();
+            addCurrentUserToUsersReq.open("POST", "ourserver/api/users", JSON.stringify(inputInfo));
+            addCurrentUserToUsersReq.onload = function () {
+                if (addCurrentUserToUsersReq.status !== 200) {
+                    alert("user array doesn't exist");
+                }
+            }
+            addCurrentUserToUsersReq.send();
+
+            // users.push(newUser);
+            //POST localStorage.setItem("users", JSON.stringify(users));
+            //POST  localStorage.setItem("loggedUsers", JSON.stringify(newUser));
+            const addCurrentUserInfoReq = new Fajax();
+            addCurrentUserInfoReq.open("PUT", "ourserver/api/loggedUsers", JSON.stringify(inputInfo));
+            addCurrentUserInfoReq.onload = function () {
+                if (addCurrentUserInfoReq.status !== 200) {
+                    alert("try to log out");
+                }
+                if (addCurrentUserInfoReq.status == 200) {
+                }
+            }
+            addCurrentUserInfoReq.send();
+        }
+        else alert("username taken");
         toApp();
     }
-    else alert("username taken");
+getUsersArrReq.send();
+
 }
 
 const hasName = (user, name) => user.username === name;
