@@ -21,9 +21,18 @@ function toApp() {
 }
 
 function logOut() {
-    localStorage.setItem("loggedUsers", JSON.stringify({}));
-
-    showLogin();
+    // localStorage.setItem("loggedUsers", JSON.stringify({}));
+    const deleteLoggedUsersReq = new Fajax();
+    deleteLoggedUsersReq.open("DELETE", "ourserver/api/loggedUsers");
+    deleteLoggedUsersReq.onload = function () {
+        if (deleteLoggedUsersReq.status !== 200) {
+            alert("loggedUser obj doesnt exists or empty");
+        }
+        else {
+            showLogin();
+        }
+    }
+    deleteLoggedUsersReq.send();
 }
 
 function addTask() {
