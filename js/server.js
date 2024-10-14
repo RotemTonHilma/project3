@@ -53,10 +53,18 @@ function server(message) {
             //check if user array exists
             if (!returnUsers()) message.status = 400;
             else {
-                message.status = 200;
-                addUsers();
+                let userWithInputName = returnUsers().find(user => hasName(user, JSON.parse(message.data).username));
+                if (userWithInputName !== undefined) message.status = 400;
+                else {
+                    message.status = 200;
+                    addUsers();
+                }
             }
         }
+
+        let userWithInputName = returnUsers().find(user => hasName(user, inputInfo.username));
+
+
 
         //create logged user key
         if (message.url === "ourserver/api/loggedUsers") {
@@ -123,3 +131,5 @@ function server(message) {
 
     return message;
 }
+
+const hasName = (user, name) => user.username === name;
