@@ -77,31 +77,50 @@ function showTasks() {
     let ul = container.querySelector("#toDoList");
     ul.innerHTML = '';
 
-    let currrentUser = JSON.parse(localStorage.getItem("loggedUsers"));
-    let userList = currrentUser.todolist;
+    //let currrentUser = JSON.parse(localStorage.getItem("loggedUsers"));
+    const getLoggedUsersReq = new Fajax();
+    getLoggedUsersReq.open("GET", "ourserver/api/loggedUsers");
+    getLoggedUsersReq.onload = function () {
+        if (getLoggedUsersReq.status !== 200) {
+            alert("loggedUser doesnt exists or empty");
+        }
+        else {
+            let currrentUser = JSON.parse(this.responseText);
+            let userList = currrentUser.todolist;
 
-    for (let idx in userList) {
-        let newLi = document.createElement("li");
-        let newP = document.createElement("p");
-        newP.textContent = userList[idx].content;
-        newP.style.display = "inline";
+            for (let idx in userList) {
+                let newLi = document.createElement("li");
+                let newP = document.createElement("p");
+                newP.textContent = userList[idx].content;
+                newP.style.display = "inline";
 
-        let newBtn = document.createElement("button");
-        newBtn.textContent = "X";
-        newBtn.addEventListener("click", () => { deleteTask(userList[idx]) });
-        newBtn.style.display = "inline-block";
+                let newBtn = document.createElement("button");
+                newBtn.textContent = "X";
+                newBtn.addEventListener("click", () => { deleteTask(userList[idx]) });
+                newBtn.style.display = "inline-block";
 
 
-        newLi.appendChild(newP);
-        newLi.appendChild(newBtn);
+                newLi.appendChild(newP);
+                newLi.appendChild(newBtn);
 
-        ul.appendChild(newLi);
+                ul.appendChild(newLi);
+            }
+        }
     }
+    getLoggedUsersReq.send();
+
 
 }
 
 function deleteTask(taskObj) {
-
+    const deleteTaskReq = new Fajax();
+    deleteTaskReq.open("DELETE", "ourserver/api/loggedUsers/todolist");
+    deleteTaskReq.onload = function () {
+        if (deleteTaskReq.status !== 200) {
+            alert("todo list is empty");
+        }
+    }
+    deleteTaskReq.send();
 }
 
 
