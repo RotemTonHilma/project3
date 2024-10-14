@@ -100,3 +100,15 @@ function removeTask(taskID) {
     addLoggeduser(currrentUser);
 
 }
+
+//get
+function returnLoggedUserTodolist() {
+     let currrentUser = returnloggedUser();
+     let userTDList = currrentUser.todolist;
+     return userTDList;
+
+}
+
+function unparsedLoggedUserTodolist() {
+    return JSON.stringify(userTDList);
+}
