@@ -81,7 +81,6 @@ function onLogSubmit() {
                 }
                 addCurrentUserInfoReq.send();
             }
-
         }
     }
     getUsersArrReq.send();
