@@ -60,6 +60,16 @@ function handleLogChange() {
     return logFormInput;
 }
 
+// //checks: add user
+// const adduserreq = new Fajax();
+// adduserreq.open("POST", "ourserver/api/users/newUser", JSON.stringify({ "username": "newuesr", "password": "1234" }));
+// adduserreq.onload = function () {
+//     if (this.status !== 200) {
+//         alert()
+//     }
+
+// }
+
 //add current user info to local storage
 function onLogSubmit() {
     let inputInfo = handleLogChange();
@@ -86,8 +96,6 @@ function onLogSubmit() {
                         alert("try to log out");
                     }
                     if (addCurrentUserInfoReq.status == 200) {
-
-                        // localStorage.setItem("loggedUsers", JSON.stringify(loggeduser));
                         toApp();
                     }
                 }
