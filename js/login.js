@@ -26,7 +26,7 @@ const setUsersArrReq = new Fajax();
 setUsersArrReq.open("POST", "ourserver/api/users");
 setUsersArrReq.onload = function () {
     if (setUsersArrReq.status !== 200) {
-        alert("user array already exists");
+        // alert("user array already exists");
     }
 }
 setUsersArrReq.send();
@@ -36,7 +36,7 @@ const setLoggedUsersArrReq = new Fajax();
 setLoggedUsersArrReq.open("POST", "ourserver/api/loggedUsers");
 setLoggedUsersArrReq.onload = function () {
     if (setLoggedUsersArrReq.status !== 200) {
-        alert("loggedUser obj already exists");
+        // alert("loggedUser obj already exists");
     }
 }
 setLoggedUsersArrReq.send();
@@ -91,6 +91,11 @@ function onLogSubmit() {
 //validate user log in
 function checkLogIn(user, input) {
     return user.username === input.username && input.password === user.password;
+}
+
+//cat audio
+function meow(audioFile) {
+    new Audio(audioFile).play();
 }
 
 

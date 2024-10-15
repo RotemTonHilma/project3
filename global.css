@@ -11,18 +11,21 @@ form {
     flex-direction: column;
     align-items: center;
 }
+
 input {
     background-color: #dad8d5;
     border-radius: 5px;
-    display:inline-block;
+    display: inline-block;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 80%;
     height: 35px;
 }
+
 input:hover {
     background-color: #f9f8f5;
 }
+
 button {
     background-color: #bf8b56;
     border-radius: 15px;
@@ -30,27 +33,31 @@ button {
     box-shadow: 0 7px #205b75;
     margin-right: 10px;
     margin-top: 10px;
-    
+
 }
 
-button:hover {background-color: #a4bce4}
+button:hover {
+    background-color: #a4bce4
+}
 
 button:active {
-  background-color: #bf966d;
-  box-shadow: 0 3px #205b75;
-  transform: translateY(4px);
+    background-color: #bf966d;
+    box-shadow: 0 3px #205b75;
+    transform: translateY(4px);
 }
+
 li {
     display: flex;
     align-content: flex-start;
     justify-content: space-between;
     background-color: #dad8d5
-   
 }
-#ultoDoList{
-    list-style-type:none;
+
+#ultoDoList {
+    list-style-type: none;
 
 }
+
 /*input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -60,6 +67,13 @@ li {
     outline: none;
   }
   */
-  input[type=text]:focus {
+input[type=text]:focus {
     background-color: #a4bce4;
-  }
+}
+
+img {
+    width: 100px;
+    position: relative;
+    float: right;
+    border-radius: 20%;
+}
